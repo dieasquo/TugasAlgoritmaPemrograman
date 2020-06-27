@@ -7,14 +7,19 @@ package wordreadwrite;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.Properties;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.extractor.WordExtractor;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 /**
  *
  * @author dell
  */
-public class ReadDoc {
+public class ReadWriteDoc {
 
     /**
      * @param args the command line arguments
@@ -23,11 +28,29 @@ public class ReadDoc {
         File filenya = new File("C:\\Users\\dell\\Documents\\NetBeansProjects\\WordReadWrite\\coba.doc");
         WordExtractor extractor = null;
         try {
+            //Read
+            
             FileInputStream fis = new FileInputStream(filenya.getAbsolutePath());
             HWPFDocument document = new HWPFDocument(fis);
             extractor = new WordExtractor(document);
             String fileText = extractor.getText();
-            System.out.println(fileText);
+
+            //Write
+            
+            Properties prop = new Properties();
+            prop.setProperty("log4j.rootLogger", "WARN");
+
+           
+            String outDocEn = "E://writeDoc.doc";
+            XWPFDocument documents = new XWPFDocument();
+            FileOutputStream out = new FileOutputStream(new File(outDocEn));
+            XWPFParagraph paragraph = documents.createParagraph();
+            XWPFRun run = paragraph.createRun();
+            run.setText(fileText);
+            document.write(out);
+            out.close();
+            System.out.println("Generate DOC sukses");
+
         } catch (Exception exep) {
             exep.printStackTrace();
         }

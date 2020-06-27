@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="libDocWrite">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libDocWrite/openxml4j-1.0-beta.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libDocWrite/log4j-1.2.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libDocWrite/ooxml-schemas-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libDocWrite/poi-ooxml-3.5-beta4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libDocWrite/dom4j-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libDocWrite/xmlbeans-2.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

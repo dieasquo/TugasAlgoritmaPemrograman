@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/NetBeansProjects.iml" filepath="$PROJECT_DIR$/.idea/NetBeansProjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WordReadWrite/WordReadWrite.iml" filepath="$PROJECT_DIR$/WordReadWrite/WordReadWrite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/belajarOOP/belajarOOP.iml" filepath="$PROJECT_DIR$/belajarOOP/belajarOOP.iml" />
+    </modules>
+  </component>
+</project>
