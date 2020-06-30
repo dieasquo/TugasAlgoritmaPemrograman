@@ -7,12 +7,9 @@ package UTS2_AudioPlayer;
 
 import jaco.mp3.player.MP3Player;
 import java.io.File;
-import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -229,7 +226,6 @@ public class MusicPlayerJava extends javax.swing.JFrame {
 
         //jika file memiliki eksetensi wav maka akan menjalankan fungsi PlayWav dan sebaliknya
         if (".wav".equals(fileExt)) {
-
             //memainkan Wav audio
             clip.start();
         } else {
