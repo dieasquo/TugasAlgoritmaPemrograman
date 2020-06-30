@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UTS_1;
+package UTS1_Converter;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,17 +24,21 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import java.io.FileReader;
+import java.util.Properties;
 
 /**
  *
  * @author dell
  */
-public class HireMeApp extends javax.swing.JFrame {
+public class Converter extends javax.swing.JFrame {
+
+    ArrayList textFile = new ArrayList();
 
     /**
      * Creates new form HireMeApp
      */
-    public HireMeApp() {
+    public Converter() {
+        this.setTitle("Converter DOC & DOCX");
         initComponents();
     }
 
@@ -53,7 +57,6 @@ public class HireMeApp extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         path = new javax.swing.JTextField();
-        nama = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         saveDoc = new javax.swing.JButton();
@@ -81,11 +84,16 @@ public class HireMeApp extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Rubik Medium", 0, 14)); // NOI18N
         jLabel2.setText("Lokasi File TXT");
 
+        path.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pathActionPerformed(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Rubik Medium", 0, 14)); // NOI18N
-        jLabel3.setText("Nama Lengkap");
 
         jLabel4.setFont(new java.awt.Font("Rubik Medium", 0, 14)); // NOI18N
-        jLabel4.setText("Deskripsi");
+        jLabel4.setText("Isi File");
 
         saveDoc.setText("Save To Doc");
         saveDoc.addActionListener(new java.awt.event.ActionListener() {
@@ -120,24 +128,26 @@ public class HireMeApp extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(62, 62, 62)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(saveDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(saveDocx, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(path, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                            .addComponent(nama))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(66, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(path, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel3)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(saveDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(59, 59, 59)
+                                    .addComponent(saveDocx, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,16 +163,14 @@ public class HireMeApp extends javax.swing.JFrame {
                     .addComponent(path, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveDoc, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(saveDoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(saveDocx, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(50, 50, 50))
         );
@@ -226,6 +234,7 @@ public class HireMeApp extends javax.swing.JFrame {
 
     private void saveDocxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDocxActionPerformed
         // TODO add your handling code here:
+        toDocx(path.getText());
     }//GEN-LAST:event_saveDocxActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -234,39 +243,34 @@ public class HireMeApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void saveDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDocActionPerformed
-        try {
-            // TODO add your handling code here:
-            saveAsDoc();
-        } catch (IOException ex) {
-            Logger.getLogger(HireMeApp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        toDoc(path.getText());
     }//GEN-LAST:event_saveDocActionPerformed
+
+    private void pathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pathActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pathActionPerformed
 
     //Browse File
     void browseFile() {
-
         File fileName;
         JFileChooser chooser = new JFileChooser(".");
-
-        int openDialog = chooser.showOpenDialog(HireMeApp.this);
+        int openDialog = chooser.showOpenDialog(Converter.this);
         if (openDialog == JFileChooser.APPROVE_OPTION) {
             fileName = chooser.getSelectedFile();
             String pathFile = fileName.getPath();
-
             path.setText(pathFile);
-
             String line = null;
+
             try {
+                //Preview di aplikasi Converter
                 FileReader fileReader = new FileReader(pathFile);
                 BufferedReader bufReader = new BufferedReader(fileReader);
 
                 int length = 0;
                 while ((line = bufReader.readLine()) != null) {
-                    if (length == 0) {
-                        nama.setText(line);
-                    } else {
-                        desk.setText(line);
-                    }
+
+                    desk.append(line + "\n");
+                    textFile.add(line);
                     length++;
                 }
 
@@ -279,38 +283,67 @@ public class HireMeApp extends javax.swing.JFrame {
         }
     }
 
-    //Save As Doc
-    void saveAsDoc() throws FileNotFoundException, IOException {
-        File theFile;
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileFilter(new FileNameExtensionFilter("doc", ".doc"));
+    public void toDoc(String path) {
 
-        theFile = chooser.getSelectedFile();
-
-        int retrival = chooser.showSaveDialog(null);
-        if (retrival == JFileChooser.APPROVE_OPTION) {
-
-            ArrayList textFile = new ArrayList();
-            String line = null;
-            try {
-                FileReader l = new FileReader(path);
-
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
-                while ((line = bufferedReader.readLine()) != null) {
-                    textFile.add(line);
-                }
-                bufferedReader.close();
-                WriteDoc(filename, textFile);
-
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "File Tidak Ada");
+        JFileChooser chooser = new JFileChooser(".");
+        chooser.setFileFilter(new FileNameExtensionFilter(".doc", "doc"));
+        int openDialog = chooser.showSaveDialog(Converter.this);
+        if (openDialog == JFileChooser.APPROVE_OPTION) {
+            String filename = chooser.getSelectedFile().toString();
+            //Menambahkan ekstensi doc jika file tidak memenuhi syarat berikut
+            if (!filename.endsWith(".doc")) {
+                filename += ".doc";
             }
+            try {
+                Properties prop = new Properties();
+                prop.setProperty("log4j.rootLogger", "WARN");
 
-            FileOutputStream out = new FileOutputStream(new File(pathFile));
-            XWPFDocument document = new XWPFDocument();
-            XWPFParagraph paragraph = document.createParagraph();
-            XWPFRun run = paragraph.createRun();
-            run.setText(teks);
+                XWPFDocument document = new XWPFDocument();
+                FileOutputStream out = new FileOutputStream(new File(filename));
+
+                for (int i = 0; i < textFile.size(); i++) {
+                    XWPFParagraph paragraph = document.createParagraph();
+                    XWPFRun run = paragraph.createRun();
+                    run.setText(String.valueOf(textFile.get(i)));
+                }
+                document.write(out);
+                out.close();
+                System.out.println("Generate DOC sukses");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void toDocx(String path) {
+
+        JFileChooser chooser = new JFileChooser(".");
+        chooser.setFileFilter(new FileNameExtensionFilter(".docx", "docx"));
+        int openDialog = chooser.showSaveDialog(Converter.this);
+        if (openDialog == JFileChooser.APPROVE_OPTION) {
+            String filename = chooser.getSelectedFile().toString();
+            //Menambahkan ekstensi docx jika file tidak memenuhi syarat berikut
+            if (!filename.endsWith(".docx")) {
+                filename += ".docx";
+            }
+            try {
+                Properties prop = new Properties();
+                prop.setProperty("log4j.rootLogger", "WARN");
+
+                XWPFDocument document = new XWPFDocument();
+                FileOutputStream out = new FileOutputStream(new File(filename));
+
+                for (int i = 0; i < textFile.size(); i++) {
+                    XWPFParagraph paragraph = document.createParagraph();
+                    XWPFRun run = paragraph.createRun();
+                    run.setText(String.valueOf(textFile.get(i)));
+                }
+                document.write(out);
+                out.close();
+                System.out.println("Generate DOCX sukses");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -341,27 +374,28 @@ public class HireMeApp extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HireMeApp.class
+            java.util.logging.Logger.getLogger(Converter.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HireMeApp.class
+            java.util.logging.Logger.getLogger(Converter.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HireMeApp.class
+            java.util.logging.Logger.getLogger(Converter.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HireMeApp.class
+            java.util.logging.Logger.getLogger(Converter.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HireMeApp().setVisible(true);
+                new Converter().setVisible(true);
             }
         });
     }
@@ -379,7 +413,6 @@ public class HireMeApp extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField nama;
     private javax.swing.JTextField path;
     private javax.swing.JButton saveDoc;
     private javax.swing.JButton saveDocx;
