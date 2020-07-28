@@ -30,14 +30,14 @@ import java.util.Properties;
  *
  * @author dell
  */
-public class Converter extends javax.swing.JFrame {
+public class AplikasiKonverterTxt extends javax.swing.JFrame {
 
     ArrayList textFile = new ArrayList();
 
     /**
      * Creates new form HireMeApp
      */
-    public Converter() {
+    public AplikasiKonverterTxt() {
         this.setTitle("Converter DOC & DOCX");
         initComponents();
     }
@@ -137,16 +137,13 @@ public class Converter extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
                         .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel3)
                         .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel3)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(saveDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(59, 59, 59)
-                                    .addComponent(saveDocx, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                            .addComponent(saveDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(59, 59, 59)
+                            .addComponent(saveDocx, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -254,7 +251,7 @@ public class Converter extends javax.swing.JFrame {
     void browseFile() {
         File fileName;
         JFileChooser chooser = new JFileChooser(".");
-        int openDialog = chooser.showOpenDialog(Converter.this);
+        int openDialog = chooser.showOpenDialog(AplikasiKonverterTxt.this);
         if (openDialog == JFileChooser.APPROVE_OPTION) {
             fileName = chooser.getSelectedFile();
             String pathFile = fileName.getPath();
@@ -287,7 +284,7 @@ public class Converter extends javax.swing.JFrame {
 
         JFileChooser chooser = new JFileChooser(".");
         chooser.setFileFilter(new FileNameExtensionFilter(".doc", "doc"));
-        int openDialog = chooser.showSaveDialog(Converter.this);
+        int openDialog = chooser.showSaveDialog(AplikasiKonverterTxt.this);
         if (openDialog == JFileChooser.APPROVE_OPTION) {
             String filename = chooser.getSelectedFile().toString();
             //Menambahkan ekstensi doc jika file tidak memenuhi syarat berikut
@@ -319,7 +316,7 @@ public class Converter extends javax.swing.JFrame {
 
         JFileChooser chooser = new JFileChooser(".");
         chooser.setFileFilter(new FileNameExtensionFilter(".docx", "docx"));
-        int openDialog = chooser.showSaveDialog(Converter.this);
+        int openDialog = chooser.showSaveDialog(AplikasiKonverterTxt.this);
         if (openDialog == JFileChooser.APPROVE_OPTION) {
             String filename = chooser.getSelectedFile().toString();
             //Menambahkan ekstensi docx jika file tidak memenuhi syarat berikut
@@ -374,28 +371,30 @@ public class Converter extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Converter.class
+            java.util.logging.Logger.getLogger(AplikasiKonverterTxt.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Converter.class
+            java.util.logging.Logger.getLogger(AplikasiKonverterTxt.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Converter.class
+            java.util.logging.Logger.getLogger(AplikasiKonverterTxt.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Converter.class
+            java.util.logging.Logger.getLogger(AplikasiKonverterTxt.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Converter().setVisible(true);
+                new AplikasiKonverterTxt().setVisible(true);
             }
         });
     }
