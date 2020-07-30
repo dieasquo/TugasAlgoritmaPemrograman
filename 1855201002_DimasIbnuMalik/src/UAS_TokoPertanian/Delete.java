@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Pertemuan13_UpdateDelete;
+package UAS_TokoPertanian;
 
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -14,16 +14,16 @@ import javax.swing.JOptionPane;
  */
 public class Delete {
 
-    Koneksi konek = new Koneksi();
+    Koneksi connect = new Koneksi();
 
-    public void delete(int nim) {
+    public void delete(String id) {
 
         try {
             
-            konek.koneksi();
-            Statement statement = konek.con.createStatement();
+            connect.koneksi();
+            Statement statement = connect.con.createStatement();
 
-            String sql = "delete from identitas where nim = '" + nim + "'";
+            String sql = "delete from data_barang where kode = '" + id + "'";
 
             statement.executeUpdate(sql);
             statement.close();

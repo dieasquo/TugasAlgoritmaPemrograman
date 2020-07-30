@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Pertemuan13_UpdateDelete;
+package UAS_TokoPertanian;
 
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -14,23 +14,29 @@ import javax.swing.JOptionPane;
  */
 public class Update {
 
-    Koneksi konek = new Koneksi();
+    Koneksi connect = new Koneksi();
 
-    public void update(int nim, String nama, String alamat, String jenis) {
+    public void edit(String id, String nama, String harga, String kategori, String harga_beli, String jumlah) {
 
         try {
 
-            konek.koneksi();
-            Statement statement = konek.con.createStatement();
+            connect.koneksi();
+            Statement statement = connect.con.createStatement();
 
-            String sql_nama = "update identitas set nama='" + nama + "'where nim='" + nim + "'";
-            String sql_alamat = "update identitas set alamat='" + alamat + "'where nim='" + nim + "'";
-            String sql_jenis = "update identitas set jenis='" + jenis + "'where nim='" + nim + "'";
+//            String sql_kode = "update data_barang set kode='" + nama + "'where kode='" + id + "'";
+            String sql_nama = "update data_barang set nama_barang='" + nama + "'where kode='" + id + "'";
+            String sql_harga = "update data_barang set harga='" + harga + "'where kode='" + id + "'";
+            String sql_kategori = "update data_barang set kategori='" + kategori + "'where kode='" + id + "'";
+            String sql_harga_beli = "update data_barang set harga_beli='" + harga_beli + "'where kode='" + id + "'";
+            String sql_jumlah = "update data_barang set jumlah='" + jumlah + "'where kode='" + id + "'";
+            
+//            UPDATE `data_barang` SET `kode`=[value-1],`nama_barang`=[value-2],`harga`=[value-3],`kategori`=[value-4],`harga_beli`=[value-5],`jumlah`=[value-6] WHERE 1
 
-//            UPDATE `identitas` SET `nim`=[value-1],`nama`=[value-2],`alamat`=[value-3],`jenis`=[value-4] WHERE 1
             statement.executeUpdate(sql_nama);
-            statement.executeUpdate(sql_alamat);
-            statement.executeUpdate(sql_jenis);
+            statement.executeUpdate(sql_harga);
+            statement.executeUpdate(sql_kategori);
+            statement.executeUpdate(sql_harga_beli);
+            statement.executeUpdate(sql_jumlah);
             statement.close();
 
             JOptionPane.showMessageDialog(null, "Berhasil Diubah");

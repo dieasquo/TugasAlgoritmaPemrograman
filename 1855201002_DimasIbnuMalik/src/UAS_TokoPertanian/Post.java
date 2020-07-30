@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Pertemuan13_UpdateDelete;
+package UAS_TokoPertanian;
 
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -12,24 +12,20 @@ import javax.swing.JOptionPane;
  *
  * @author dell
  */
-public class Insert {
+public class Post {
 
-    Koneksi konek = new Koneksi();
+    Koneksi connect = new Koneksi();
 
-    public void insert(int nim, String nama, String alamat, String jk) {
+    public void post(String kode, String nama_barang, int harga, String kategori, int harga_beli, int jumlah) {
 
         try {
             
-            konek.koneksi();
-            Statement statement = konek.con.createStatement();
-
-            String sql = "insert into identitas (nim, nama, alamat, jenis)" + "values('" + nim + "', '" + nama + "','" + alamat + "','" + jk + "')";
-
+            connect.koneksi();
+            Statement statement = connect.con.createStatement();
+            String sql = "insert into data_barang (`kode`, `nama_barang`, `harga`, `kategori`, `harga_beli`, `jumlah`)" + "values('" + kode + "', '" + nama_barang + "'," + harga + ",'" + kategori + "','" + harga_beli + "','" + jumlah + "')";
             statement.executeUpdate(sql);
             statement.close();
-
-// kemudian data yang disisipkan akan saya tampilkan lewat textArea 
-//            menampilkan.setText(mah_nim.getText() + "\n" + mah_nama.getText() + "\n" + mah_alamat.getText() + "\n" + mah_fak_id.getText() + "\n" + jenis);
+//            System.out.print("berhasil menyimpan");
 
             JOptionPane.showMessageDialog(null, "Berhasil Disimpan");
         } catch (Exception ex) {

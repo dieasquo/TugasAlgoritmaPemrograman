@@ -64,6 +64,7 @@ public class KoneksiGUI extends javax.swing.JFrame {
         try {
             String sql = "select * from identitas where nim like '%" + nim + "%'";
             pst = konek.con.prepareStatement(sql);
+            rs = pst.executeQuery(sql);
             tabel.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,8 +76,9 @@ public class KoneksiGUI extends javax.swing.JFrame {
         konek.koneksi();
 
         try {
-            String sql = "select * from identitas where nim like '%" + nama + "%'";
+            String sql = "select * from identitas where nama like '%" + nama + "%'";
             pst = konek.con.prepareStatement(sql);
+            rs = pst.executeQuery(sql);
             tabel.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
             e.printStackTrace();
@@ -88,8 +90,9 @@ public class KoneksiGUI extends javax.swing.JFrame {
         konek.koneksi();
 
         try {
-            String sql = "select * from identitas where nim like '%" + alamat + "%'";
+            String sql = "select * from identitas where alamat like '%" + alamat + "%'";
             pst = konek.con.prepareStatement(sql);
+            rs = pst.executeQuery(sql);
             tabel.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
             e.printStackTrace();
@@ -141,7 +144,7 @@ public class KoneksiGUI extends javax.swing.JFrame {
         Reset = new javax.swing.JButton();
         cari = new javax.swing.JButton();
         hapus = new javax.swing.JButton();
-        dropdown = new javax.swing.JComboBox<>();
+        cariBerdasarkan = new javax.swing.JComboBox<>();
         jButton8 = new javax.swing.JButton();
         update = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -342,12 +345,12 @@ public class KoneksiGUI extends javax.swing.JFrame {
             }
         });
 
-        dropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Pilih Berdasarkan-", "NIM", "Nama", "Alamat", "Jenis Kelamin", " " }));
-        dropdown.setToolTipText("-Pilih Berdasarkan-");
-        dropdown.setName("-Pilih Berdasarkan-"); // NOI18N
-        dropdown.addActionListener(new java.awt.event.ActionListener() {
+        cariBerdasarkan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Pilih Berdasarkan-", "NIM", "Nama", "Alamat", "Jenis Kelamin", " " }));
+        cariBerdasarkan.setToolTipText("-Pilih Berdasarkan-");
+        cariBerdasarkan.setName("-Pilih Berdasarkan-"); // NOI18N
+        cariBerdasarkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dropdownActionPerformed(evt);
+                cariBerdasarkanActionPerformed(evt);
             }
         });
 
@@ -403,7 +406,7 @@ public class KoneksiGUI extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cariBerdasarkan, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -435,7 +438,7 @@ public class KoneksiGUI extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cari)
-                    .addComponent(dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cariBerdasarkan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -445,7 +448,7 @@ public class KoneksiGUI extends javax.swing.JFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        dropdown.getAccessibleContext().setAccessibleName("-Pilih Berdasarkan-");
+        cariBerdasarkan.getAccessibleContext().setAccessibleName("-Pilih Berdasarkan-");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Output Data Mahasiswa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(51, 51, 51))); // NOI18N
 
@@ -603,9 +606,9 @@ public class KoneksiGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void dropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownActionPerformed
+    private void cariBerdasarkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariBerdasarkanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dropdownActionPerformed
+    }//GEN-LAST:event_cariBerdasarkanActionPerformed
 
     private void hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusActionPerformed
         // TODO add your handling code here:
@@ -620,6 +623,21 @@ public class KoneksiGUI extends javax.swing.JFrame {
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
         // TODO add your handling code here:
+
+        if (cariBerdasarkan.getSelectedIndex() == 1) {
+            selectByNIM(Integer.parseInt(field_nim.getText()));
+        } else if (cariBerdasarkan.getSelectedIndex() == 2) {
+            selectByNama(field_nama.getText());
+        } else if (cariBerdasarkan.getSelectedIndex() == 3) {
+            selectByAlamat(field_alamat.getText());
+        } else if (cariBerdasarkan.getSelectedIndex() == 4) {
+            String jenis = "";
+            if (jk_laki.isSelected()) {
+                jenis = "L";
+            } else if (jk_perempuan.isSelected()) {
+                jenis = "P";
+            }
+        }
 
 
     }//GEN-LAST:event_cariActionPerformed
@@ -685,7 +703,7 @@ public class KoneksiGUI extends javax.swing.JFrame {
         }
 
         ubah.update(Integer.parseInt(nim), nama, alamat, jenis);
-        
+
         table();
     }//GEN-LAST:event_updateActionPerformed
 
@@ -732,7 +750,7 @@ public class KoneksiGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Reset;
     private javax.swing.JButton cari;
-    private javax.swing.JComboBox<String> dropdown;
+    private javax.swing.JComboBox<String> cariBerdasarkan;
     private javax.swing.JTextArea field_alamat;
     private javax.swing.JTextArea field_alamat1;
     private javax.swing.JTextField field_nama;

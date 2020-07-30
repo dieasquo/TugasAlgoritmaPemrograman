@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Pertemuan13_UpdateDelete;
+package UAS_TokoPertanian;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,25 +24,22 @@ public class Koneksi {
         Koneksi tesDatabase = new Koneksi();
         tesDatabase.koneksi();
     }
-
+    String status = "Tidak Terhubung";
     Connection con = null;
-
-    String statusKoneksi;
 
     public void koneksi() {
         try {
-            String connectionURL = "jdbc:mysql://localhost/mahasiswa";
+            String connectionURL = "jdbc:mysql://localhost/tokopertanian";
             String username = "root";
             String password = "";
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(connectionURL, username, password);
 
-            statusKoneksi = "Terhubung";
+            status = "Terhubung";
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Gagal Terhubung");
+            e.printStackTrace();
 
-            statusKoneksi = "Gagal Terhubung";
-            System.exit(0);
         }
     }
 
