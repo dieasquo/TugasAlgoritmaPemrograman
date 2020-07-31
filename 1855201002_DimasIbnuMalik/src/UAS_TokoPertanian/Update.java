@@ -16,21 +16,18 @@ public class Update {
 
     Koneksi connect = new Koneksi();
 
-    public void edit(String id, String nama, String harga, String kategori, String harga_beli, String jumlah) {
+    public void edit(String id, String nama, String harga, String kategori, String jumlah_terjual, String total_pendapatan) {
 
         try {
 
             connect.koneksi();
             Statement statement = connect.con.createStatement();
 
-//            String sql_kode = "update data_barang set kode='" + nama + "'where kode='" + id + "'";
             String sql_nama = "update data_barang set nama_barang='" + nama + "'where kode='" + id + "'";
-            String sql_harga = "update data_barang set harga='" + harga + "'where kode='" + id + "'";
             String sql_kategori = "update data_barang set kategori='" + kategori + "'where kode='" + id + "'";
-            String sql_harga_beli = "update data_barang set harga_beli='" + harga_beli + "'where kode='" + id + "'";
-            String sql_jumlah = "update data_barang set jumlah='" + jumlah + "'where kode='" + id + "'";
-            
-//            UPDATE `data_barang` SET `kode`=[value-1],`nama_barang`=[value-2],`harga`=[value-3],`kategori`=[value-4],`harga_beli`=[value-5],`jumlah`=[value-6] WHERE 1
+            String sql_harga = "update data_barang set harga='" + harga + "'where kode='" + id + "'";
+            String sql_harga_beli = "update data_barang set jumlah_terjual='" + jumlah_terjual + "'where kode='" + id + "'";
+            String sql_jumlah = "update data_barang set total_pendapatan='" + total_pendapatan + "'where kode='" + id + "'";
 
             statement.executeUpdate(sql_nama);
             statement.executeUpdate(sql_harga);

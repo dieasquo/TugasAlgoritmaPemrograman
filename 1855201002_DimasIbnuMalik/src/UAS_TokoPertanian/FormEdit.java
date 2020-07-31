@@ -37,12 +37,12 @@ public class FormEdit extends javax.swing.JFrame {
 
             while (rs.next()) {
                 inputKode.setText(rs.getString("kode"));
-                System.out.println(inputKode.getText());
                 inputNama.setText(rs.getString("nama_barang"));
-                inputHargaJual.setText(String.valueOf(rs.getInt("harga")));
                 inputKategori.setSelectedItem((rs.getString("kategori")));
-                InputHargaAwal.setText(String.valueOf(rs.getInt("harga_beli")));
-                inputJumlah.setText(String.valueOf(rs.getInt("jumlah")));
+                InputHarga.setText(String.valueOf(rs.getInt("harga")));
+                inputJumlah.setText(String.valueOf(rs.getInt("jumlah_terjual")));
+                inputTotal.setText(String.valueOf(rs.getInt("total_pendapatan")));
+
             }
 
         } catch (Exception e) {
@@ -67,9 +67,9 @@ public class FormEdit extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         inputKode = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        InputHargaAwal = new javax.swing.JTextField();
+        InputHarga = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        inputHargaJual = new javax.swing.JTextField();
+        inputTotal = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         inputJumlah = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -118,14 +118,14 @@ public class FormEdit extends javax.swing.JFrame {
         inputKode.setEnabled(false);
 
         jLabel4.setFont(new java.awt.Font("Rubik", 0, 12)); // NOI18N
-        jLabel4.setText("Harga Beli");
+        jLabel4.setText("Harga");
 
-        InputHargaAwal.setFont(new java.awt.Font("Rubik", 0, 12)); // NOI18N
+        InputHarga.setFont(new java.awt.Font("Rubik", 0, 12)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Rubik", 0, 12)); // NOI18N
-        jLabel5.setText("Harga Jual");
+        jLabel5.setText("Total Harga");
 
-        inputHargaJual.setFont(new java.awt.Font("Rubik", 0, 12)); // NOI18N
+        inputTotal.setFont(new java.awt.Font("Rubik", 0, 12)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Rubik", 0, 12)); // NOI18N
         jLabel6.setText("Kategori");
@@ -156,34 +156,42 @@ public class FormEdit extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(43, 43, 43)
+                .addGap(256, 256, 256)
+                .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(inputKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(inputKode, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(InputHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(inputNama, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(43, 43, 43)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inputJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputHargaJual, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inputKode, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(InputHargaAwal, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputNama, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(inputTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inputJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(97, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(256, 256, 256)
-                .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel7)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -200,18 +208,18 @@ public class FormEdit extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InputHargaAwal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(InputHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputHargaJual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -239,14 +247,13 @@ public class FormEdit extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String id = inputKode.getText();
-        String harga = inputHargaJual.getText();
         String nama = inputNama.getText();
         String kategori = String.valueOf(inputKategori.getSelectedItem());
-        String harga_beli = InputHargaAwal.getText();
+        String harga = InputHarga.getText();
         String jumlah = inputJumlah.getText();
+        String total = inputTotal.getText();
 
-        update.edit(id, nama, harga, kategori, harga_beli, jumlah);
-        JOptionPane.showMessageDialog(null, "Data Berhasil Diubah");
+        update.edit(id, nama, harga, kategori, jumlah, total);
 
         dispose();
 
@@ -304,12 +311,12 @@ public class FormEdit extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField InputHargaAwal;
-    public javax.swing.JTextField inputHargaJual;
+    public javax.swing.JTextField InputHarga;
     public javax.swing.JTextField inputJumlah;
     public javax.swing.JComboBox<String> inputKategori;
     public javax.swing.JTextField inputKode;
     public javax.swing.JTextField inputNama;
+    public javax.swing.JTextField inputTotal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

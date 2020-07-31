@@ -19,7 +19,7 @@ public class Delete {
     public void delete(String id) {
 
         try {
-            
+
             connect.koneksi();
             Statement statement = connect.con.createStatement();
 

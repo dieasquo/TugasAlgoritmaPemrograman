@@ -16,16 +16,15 @@ public class Post {
 
     Koneksi connect = new Koneksi();
 
-    public void post(String kode, String nama_barang, int harga, String kategori, int harga_beli, int jumlah) {
+    public void post(String kode, String nama_barang, String kategori, int harga, int jumlah, int total_pendapatan) {
 
         try {
-            
+
             connect.koneksi();
             Statement statement = connect.con.createStatement();
-            String sql = "insert into data_barang (`kode`, `nama_barang`, `harga`, `kategori`, `harga_beli`, `jumlah`)" + "values('" + kode + "', '" + nama_barang + "'," + harga + ",'" + kategori + "','" + harga_beli + "','" + jumlah + "')";
+            String sql = "INSERT INTO `data_barang`(`kode`, `nama_barang`, `kategori`, `harga`, `jumlah_terjual`, `total_pendapatan`) VALUES ('" + kode + "','" + nama_barang + "','" + kategori + "','" + harga + "','" + jumlah + "','" + total_pendapatan + "')";
             statement.executeUpdate(sql);
             statement.close();
-//            System.out.print("berhasil menyimpan");
 
             JOptionPane.showMessageDialog(null, "Berhasil Disimpan");
         } catch (Exception ex) {
